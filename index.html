@@ -1,0 +1,155 @@
+<html lang="en">
+    <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+    <title>Welcome to Foundation</title>
+    <!-- Included CSS Files (Uncompressed) -->
+    <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+    -->
+    <!-- Included CSS Files (Compressed) -->
+    <link rel="stylesheet" href="stylesheets/foundation.min.css">
+    <link rel="stylesheet" href="stylesheets/app.css">
+    <script src="javascripts/modernizr.foundation.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <div class="row">
+      <div id="header" class="five columns centered">
+        <img src="./openthesaurus-logo-beta.png"></div>
+    </div>
+    <!-- Content -->
+    
+    
+    <!-- Postfix action -->
+	<div class="row collapse">
+	  <div class="four offset-by-three mobile-three columns">
+		<input type="text" id="word" name="word"/>
+	</div>
+	  <div class="two pull-three mobile-one columns">
+		<a href="#"  onclick="results()" class="button expand postfix">Search</a>
+	  </div>
+	</div>
+    
+
+    <div class="row collapse">
+      <div id="results" class="six centered columns">
+        <div id="results"></div>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <div  class="row collapse">
+      <div id="footer" class="six centered columns">
+        <hr>
+        <p>
+          This is a WebApp developed by
+          <a href="http://bacharakis.com">Christos Bacharakis</a>
+          Fork me on
+          <a href="https://github.com/bacharakis/openthesaurus">GitHub</a>
+          .
+          <a href="#" id="install_app">Install</a>
+          as a web app
+        </p>
+      </div>
+    </div>
+    <!-- Included JS Files (Uncompressed) -->
+    <!--
+  <script src="javascripts/jquery.js"></script>
+  <script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script>
+  <script src="javascripts/jquery.foundation.forms.js"></script>
+  <script src="javascripts/jquery.foundation.reveal.js"></script>
+  <script src="javascripts/jquery.foundation.orbit.js"></script>
+  <script src="javascripts/jquery.foundation.navigation.js"></script>
+  <script src="javascripts/jquery.foundation.buttons.js"></script>
+  <script src="javascripts/jquery.foundation.tabs.js"></script>
+  <script src="javascripts/jquery.foundation.tooltips.js"></script>
+  <script src="javascripts/jquery.foundation.accordion.js"></script>
+  <script src="javascripts/jquery.placeholder.js"></script>
+  <script src="javascripts/jquery.foundation.alerts.js"></script>
+  <script src="javascripts/jquery.foundation.topbar.js"></script>
+  <script src="javascripts/jquery.foundation.joyride.js"></script>
+  <script src="javascripts/jquery.foundation.clearing.js"></script>
+  <script src="javascripts/jquery.foundation.magellan.js"></script>
+  -->
+  <!-- Included JS Files (Compressed) -->
+  <script src="javascripts/jquery.js"></script>
+  <script src="javascripts/foundation.min.js"></script>
+  <!-- Initialize JS Plugins -->
+  <script src="javascripts/app.js"></script>
+  <script>
+    $(window).load(function(){
+      $("#featured").orbit();
+    });
+    </script>
+  <script type="text/javascript"> 
+function find(e1){
+    $.ajax({
+      url: 'http://www.openthesaurus.gr/synonyme/search?q='+$(e1).attr("id")+'&format=application/json',
+      dataType: 'jsonp',
+      crossDomain: true,
+      cache: false
+    }).done(function(json) {
+        
+    var result = [];
+    getNames(json, "term");
+    var ff = [];
+    var len = result.length;
+    for(var i=0; i<len; i++){
+            var text = result[i];
+            var finaltext = '<a id='+text+' onclick="find(this)">'+text+'</a> , ';
+            ff.push(finaltext);
+            }
+    $('#results').html("");
+    $('#results').html(ff);
+    document.getElementById('word').value=$(e1).attr("id");
+    function getNames(obj, name) {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                if ("object" == typeof(obj[key])) {
+                    getNames(obj[key], name);
+                } else if (key == name) {
+                    result.push(obj[key]);
+                }
+            }
+        }
+    }
+    });
+    };
+    function results() {
+    $.ajax({
+      url: 'http://www.openthesaurus.gr/synonyme/search?q='+document.getElementById('word').value+'&format=application/json',
+      dataType: 'jsonp',
+      crossDomain: true,
+      cache: false
+    }).done(function(json) {
+    var result = [];
+    getNames(json, "term");
+    var ff = [];
+    var len = result.length;
+    for(var i=0; i<len; i++){
+        var text = result[i];
+        var finaltext = '<a id='+text+' onclick="find(this)">'+text+'</a> , ';
+        ff.push(finaltext);
+        }
+    $('#results').html("");
+    $('#results').html(ff);
+function getNames(obj, name) {
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            if ("object" == typeof(obj[key])) {
+                getNames(obj[key], name);
+            } else if (key == name) {
+                result.push(obj[key]);
+            }
+        }
+    }
+}
+});
+};
+</script>
+</body>
+</html>
+
