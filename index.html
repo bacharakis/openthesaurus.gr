@@ -29,7 +29,7 @@
 		<input type="text" id="word" name="word"/>
 	</div>
 	  <div class="two pull-three mobile-one columns">
-		<a href="#"  onclick="results()" class="button expand postfix">Search</a>
+		<a id="search" href="#"  onclick="resulta()" class="button expand postfix">Search</a>
 	  </div>
 	</div>
     
@@ -84,73 +84,6 @@
       $("#featured").orbit();
     });
     </script>
-  <script type="text/javascript"> 
-function find(e1){
-    $.ajax({
-      url: 'http://www.openthesaurus.gr/synonyme/search?q='+$(e1).attr("id")+'&format=application/json',
-      dataType: 'jsonp',
-      crossDomain: true,
-      cache: false
-    }).done(function(json) {
-        
-    var result = [];
-    getNames(json, "term");
-    var ff = [];
-    var len = result.length;
-    for(var i=0; i<len; i++){
-            var text = result[i];
-            var finaltext = '<a id='+text+' onclick="find(this)">'+text+'</a> , ';
-            ff.push(finaltext);
-            }
-    $('#results').html(ff);
-    document.getElementById('word').value=$(e1).attr("id");
-    function getNames(obj, name) {
-        for (var key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                if ("object" == typeof(obj[key])) {
-                    getNames(obj[key], name);
-                } else if (key == name) {
-                    result.push(obj[key]);
-                }
-            }
-        }
-    }
-    });
-
-    function results() {
-    $.ajax({
-      url: 'http://www.openthesaurus.gr/synonyme/search?q='+document.getElementById('word').value+'&format=application/json',
-      dataType: 'jsonp',
-      crossDomain: true,
-      cache: false
-    }).done(function(json) {
-    var result = [];
-    getNames(json, "term");
-    var ff = [];
-    var len = result.length;
-    for(var i=0; i<len; i++){
-        var text = result[i];
-        var finaltext = '<a id='+text+' onclick="find(this)">'+text+'</a> , ';
-        ff.push(finaltext);
-        }
-
-    $('#results').html(ff);
-function getNames(obj, name) {
-    for (var key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            if ("object" == typeof(obj[key])) {
-                getNames(obj[key], name);
-            } else if (key == name) {
-                result.push(obj[key]);
-            }
-        }
-    }
-}
-});
-}
-}
-
-</script>
 </body>
 </html>
 
