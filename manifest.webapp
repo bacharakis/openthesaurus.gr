@@ -1,7 +1,7 @@
 {
   "name": "openthesaurus.gr",
   "description": "A web app for openthesaurus.gr",
-  "launch_path": "/openthesaurus.gr",
+  "launch_path": "/openthesaurus.gr/",
   "icons": {
     "128": "/imgages/icon-128.png"
   },
