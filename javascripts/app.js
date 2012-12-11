@@ -39,3 +39,17 @@
   }
 
 })(jQuery, this);
+
+$(document).ready(function() {
+    $("#install_app").click(function() {
+        var request = window.navigator.mozApps.install('http://github.com/bacharakis/openthesaurus.gr/manifest.webapp');
+        request.onsuccess = function () {
+            // Save the App object that is returned
+            var appRecord = this.result;
+        };
+        request.onerror = function () {
+            // Display the error information from the DOMError object
+            alert('Install failed, error: ' + this.error.name);
+        };
+    });
+});

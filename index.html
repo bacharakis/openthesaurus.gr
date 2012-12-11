@@ -48,7 +48,7 @@
           This is a WebApp developed by
           <a href="http://bacharakis.com">Christos Bacharakis</a>
           Fork me on
-          <a href="https://github.com/bacharakis/openthesaurus">GitHub</a>
+          <a href="https://github.com/bacharakis/openthesaurus.gr">GitHub</a>
           .
           <a href="#" id="install_app">Install</a>
           as a web app
@@ -102,7 +102,6 @@ function find(e1){
             var finaltext = '<a id='+text+' onclick="find(this)">'+text+'</a> , ';
             ff.push(finaltext);
             }
-    $('#results').html("");
     $('#results').html(ff);
     document.getElementById('word').value=$(e1).attr("id");
     function getNames(obj, name) {
@@ -117,7 +116,7 @@ function find(e1){
         }
     }
     });
-    };
+
     function results() {
     $.ajax({
       url: 'http://www.openthesaurus.gr/synonyme/search?q='+document.getElementById('word').value+'&format=application/json',
@@ -134,7 +133,7 @@ function find(e1){
         var finaltext = '<a id='+text+' onclick="find(this)">'+text+'</a> , ';
         ff.push(finaltext);
         }
-    $('#results').html("");
+
     $('#results').html(ff);
 function getNames(obj, name) {
     for (var key in obj) {
@@ -148,7 +147,9 @@ function getNames(obj, name) {
     }
 }
 });
-};
+}
+}
+
 </script>
 </body>
 </html>
