@@ -3,7 +3,7 @@
   "description": "A web app for openthesaurus.gr",
   "launch_path": "/projects/openthesaurus.gr/",
   "icons": {
-    "128": "/images/icon-128.png"
+    "128": "/img/icon-128.png"
   },
   "developer": {
     "name": "Christos Bacharakis",
