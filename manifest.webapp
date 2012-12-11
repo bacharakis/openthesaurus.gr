@@ -1,13 +1,13 @@
 {
   "name": "openthesaurus.gr",
   "description": "A web app for openthesaurus.gr",
-  "launch_path": "http://bacharakis.com/projects/openthesaurus.gr/",
+  "launch_path": "/projects/openthesaurus.gr/",
   "icons": {
-    "128": "/imgages/icon-128.png"
+    "128": "/images/icon-128.png"
   },
   "developer": {
     "name": "Christos Bacharakis",
-    "url": "http://github.com/bacharakis"
+    "url": "http://bacharakis.com"
   },
   "default_locale": "en"
 }
